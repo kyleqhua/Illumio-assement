@@ -1,0 +1,21 @@
+This is code to parse a VPC flow log file and count dstports / protocol matches and tag as described in the Illumio assessment. 
+
+Directory descriptions:
+flowLog contains txt files that represent a set of logs.
+lookUpTables contains csv files that represents a table of (dstports / protocol) : tag 
+counts will have all the output of the program in filename_port_protocol_counts and filename_tag_counts in csv format.
+
+File descriptions:
+protocol-numbers-1.csv is a file with all the protocol names and numbers. Used in the parser. If no such file exists, the parser will default to a basic mapping.
+flow_logs_parser.py contains all the code for the assesment.
+
+flow_logs_parser.py creates a counter class that loads a lookup table. The counter class can then load a flowlog file and then output 2 count files. 
+
+To run, download repository and run python flow_logs_parser.py .
+To edit input files open flow_logs_parser.py and edit the input file paths in the main function at line 148.
+
+Assumptions:
+- Only supports default log format, not custom and the only version that is supported is 2. 
+- Any protocol can be used.
+
+While the program only reads one flowlog file per command, it is designed to potentially read multiple, as we keep the lookup table state. It uses standard python imports such as collections and csv.
